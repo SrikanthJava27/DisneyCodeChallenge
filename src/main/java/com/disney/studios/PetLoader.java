@@ -35,6 +35,7 @@ public class PetLoader implements InitializingBean {
     @Autowired
     DataSource dataSource;
 
+
     /**
      * Load the different breeds into the data source after
      * the application is ready.
@@ -64,6 +65,13 @@ public class PetLoader implements InitializingBean {
                 /* TODO: Create appropriate objects and save them to
                  *       the datasource.
                  */
+
+   /*             PetImage petImage = new PetImage();
+                petImage.setPetBreedName(breed);
+                petImage.setImageId(UUID.randomUUID());
+                petImage.setFavourites(0);
+                petImage.setCreatedDate(new Date());
+                petImage.setCreateduser("SYSTEM");*/
             }
         }
     }
