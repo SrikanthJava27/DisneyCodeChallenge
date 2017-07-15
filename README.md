@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # API Challenge
 
@@ -88,3 +89,7 @@ You will have until the end of the day to complete the challenge. In our tests, 
 The timestamp of your last commit will be used to gage how long you worked on this project.
 
 
+=======
+# DisneyCodeChallenge
+Code from Srikanth
+>>>>>>> 049a673b16feb1afe24eaab186b5f0c3894558c0
