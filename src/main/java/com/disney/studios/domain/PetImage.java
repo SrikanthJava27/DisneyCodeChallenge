@@ -2,14 +2,11 @@ package com.disney.studios.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.UUID;
 
-/**
- * Created by maheshkumargaddam on 7/14/17.
- */
+@Entity
+@Table(name = "PET_IMAGE")
 public class PetImage extends AbstarctDomainObject {
     @Id
     @Column(name = "IMAGE_ID")

@@ -7,9 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.UUID;
 
-/**
- * Created by maheshkumargaddam on 7/14/17.
- */
+
 public class PetImageDto {
 
     private UUID imageId;

@@ -7,16 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Created by maheshkumargaddam on 7/14/17.
- */
 @Repository
-public interface PetImageRepository  extends JpaRepository<PetImage, UUID> {
+public interface PetImageRepository extends JpaRepository<PetImage, UUID> {
 
+    List<PetImage> findAll();
 
-    List<PetImage> findAllOrderByFavouritesDesc();
-
-    List<PetImage> findAllByPetBreedNameOrderByFavouritesDesc();
+    List<PetImage> findAllByPetBreedName(String name);
 
     PetImage save(PetImage petImage);
 }

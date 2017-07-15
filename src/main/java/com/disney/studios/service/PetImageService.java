@@ -8,12 +8,11 @@ import java.util.List;
 /**
  * Created by maheshkumargaddam on 7/14/17.
  */
-@Service
 public interface PetImageService {
 
     List<PetImageDto> findAll();
 
-    List<PetImageDto> findAllByPetBreedName();
+    List<PetImageDto> findAllByPetBreedName(String name);
 
     PetImageDto voteUp(PetImageDto petImage);
 

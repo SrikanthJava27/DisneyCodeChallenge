@@ -1,5 +1,8 @@
 package com.disney.studios;
 
+import com.disney.studios.domain.PetImage;
+import com.disney.studios.repository.PetImageRepository;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +13,13 @@ import javax.sql.DataSource;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Loads stored objects from the file system and builds up
@@ -19,6 +29,7 @@ import java.io.InputStreamReader;
  */
 @Component
 public class PetLoader implements InitializingBean {
+    private static final String SQL_INSERT = "INSERT INTO PET_IMAGE(IMAGE_ID, FAVOURITES, URL,BREED_NAME) VALUES(?, ?, ?, ?)";
     // Resources to the different files we need to load.
     @Value("classpath:data/labrador.txt")
     private Resource labradors;
@@ -60,19 +71,54 @@ public class PetLoader implements InitializingBean {
     private void loadBreed(String breed, Resource source) throws IOException {
         try ( BufferedReader br = new BufferedReader(new InputStreamReader(source.getInputStream()))) {
             String line;
+            List<PetImage> petImageList = Lists.newArrayList();
             while ((line = br.readLine()) != null) {
                 System.out.println(line);
                 /* TODO: Create appropriate objects and save them to
                  *       the datasource.
                  */
 
-   /*             PetImage petImage = new PetImage();
+                PetImage petImage = new PetImage();
                 petImage.setPetBreedName(breed);
                 petImage.setImageId(UUID.randomUUID());
                 petImage.setFavourites(0);
                 petImage.setCreatedDate(new Date());
-                petImage.setCreateduser("SYSTEM");*/
+                petImage.setCreateduser("SYSTEM");
+
+                petImageList.add(petImage);
+
             }
+            try {
+               save(petImageList);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
     }
+
+    public void save(List<PetImage> entities) throws SQLException {
+            Connection connection = dataSource.getConnection();
+
+            PreparedStatement statement = connection.prepareStatement(SQL_INSERT);
+
+         {
+
+            for (PetImage entity : entities) {
+                statement.setObject(1, entity.getImageId());
+                statement.setInt(2, entity.getFavourites());
+                statement.setString(3, entity.getURL());
+                statement.setString(4, entity.getPetBreedName());
+
+
+
+                statement.addBatch();
+
+            }
+            statement.executeBatch();
+
+        }
+    }
+
+
 }

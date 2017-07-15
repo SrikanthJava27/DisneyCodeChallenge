@@ -3,11 +3,7 @@ package com.disney.studios.domain;
 import javax.persistence.Column;
 import java.util.Date;
 
-/**
- * Created by maheshkumargaddam on 7/25/16.
- */
-
-public  abstract class AbstarctDomainObject {
+public abstract class AbstarctDomainObject {
     @Column(name = "CREATED_USER")
     private String createduser;
     @Column(name = "CREATED_DATE")
