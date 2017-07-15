@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 # API Challenge
 
 Design and create a RESTful API that could be used to manage a list of dog images. The API is meant to act as the backend to the [Dog Breed App](https://gist.github.com/maxdisney/26e421c68f5d543be5b2), which is being built by a different team.
@@ -92,4 +90,3 @@ The timestamp of your last commit will be used to gage how long you worked on th
 =======
 # DisneyCodeChallenge
 Code from Srikanth
->>>>>>> 049a673b16feb1afe24eaab186b5f0c3894558c0
